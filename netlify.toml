@@ -1,7 +1,6 @@
 [build]
-  publish = "dist"  # This should be the output directory of Vite's build
-  command = "npm run build"  # This is the build command Netlify will use
-  base = "myapp"  # Ensure the base directory is correct if the package.json is inside the "myapp" folder
+  publish = "dist"  # Vite build output directory
+  command = "npm run build"  # The build command
 
 [[redirects]]
   from = "/*"
