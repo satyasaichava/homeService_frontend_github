@@ -30,6 +30,18 @@ function Signup() {
     });
   };
 
+  const emailExists = async (email) =>{
+    try {
+        const response = await axios.get(`/api/check-username?username=${username}`);// replace with actual api
+        if(response.data.exists){
+          errors.email = 'email already exists';
+        }
+    } catch (error) {
+        console.error('Error checking username:', error);
+        return 'no';
+    }
+  }
+
   const validateForm = () => {
     let valid = true;
     const newErrors = {
@@ -131,7 +143,7 @@ function Signup() {
                   className={errors.firstName ? 'error' : ''}
                 />
                 {errors.firstName && (
-                  <div className="error-message">
+                  <div className="error-message"> 
                     <span className="error-icon">!</span>
                     {errors.firstName}
                   </div>
@@ -166,6 +178,7 @@ function Signup() {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              onBlur={emailExists}
               placeholder="Enter your email"
               className={errors.email ? 'error' : ''}
             />
